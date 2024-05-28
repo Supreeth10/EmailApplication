@@ -6,10 +6,12 @@ public class Email {
     private String firstName;
     private String lastName;
     private String password;
+    private String email;
     private int defaultPasswordLength = 10;
     private String department;
-    private int mailboxCapacity;
+    private int mailboxCapacity = 500;
     private String alternateEmail;
+    private String companySuffix = "aeycompany.com";
 
     // constructor to set firstname and last name
     public Email(String firstName, String lastName) {
@@ -19,10 +21,11 @@ public class Email {
         // call a function to ask for the department and set it
         this.department = setDepartment();
 
-
         //call a method that returns random password
         this.password = randomPassword(this.defaultPasswordLength);
-        System.out.println(this.firstName + " " + this.lastName + " Department " + this.department + " Password " + this.password);
+
+        //combine all the details to create the password
+        this.email = this.firstName.toLowerCase()+"."+this.lastName.toLowerCase()+"@"+this.department+"."+companySuffix;
     }
 
     //Ask for the department
@@ -55,8 +58,8 @@ public class Email {
     }
 
     //Set the mailbox capacity
-    public void setMailboxCapacity(int mailboxCapacity){
-        this.mailboxCapacity = mailboxCapacity;
+    public void setMailboxCapacity(int capacity){
+        this.mailboxCapacity = capacity;
     }
 
     //Set the alternate email
@@ -65,9 +68,26 @@ public class Email {
     }
 
     //Change the password
-public void changePassword(String password){
-        this.password = password;
-}
+    public void changePassword(String password){
+            this.password = password;
+    }
+
+    public int getMailboxCapacity(){
+        return this.mailboxCapacity;
+    }
+
+    public String getAlternateEmail(){
+        return this.alternateEmail;
+    }
+    public String getPassword(){
+        return this.password;
+    }
+
+    public String showInfo(){
+        return "DISPLAY NAME: " + firstName + " " + lastName + "\nEMAIL: " + email + "\nMailbox Capacity: " +mailboxCapacity ;
+
+    }
+
 
 }
 
